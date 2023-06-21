@@ -1,7 +1,9 @@
 const express = require('express');
 const server = express();
+const cors = require('cors');
 const chatLogRouter = require('./chatLog-router');
 
+server.use(cors());
 server.use(express.json());
 server.use('/api/chatlog', chatLogRouter);
 

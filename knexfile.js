@@ -43,8 +43,9 @@ module.exports = {
     client: 'pg',
     connection: {
       database: 'chatLog',
-      user:     process.env.USER,
-      password: process.env.PASSW
+      host:     process.env.REMOTEHOST,
+      user:     process.env.REMOTEUSER,
+      password: process.env.REMOTEPASS
     },
     pool: {
       min: 2,

@@ -1,34 +1,34 @@
 const db = require('../data/db-config');
 
 const getChatLog = () => {
-    return db('chatLog');
+    return db('public.chatLog');
 }
 
 const getLogById = (id) => {
-    return db('chatLog')
+    return db('public.chatLog')
         .where('id', id)
         .first();
 }
 
 const getLogs = (role) => {
-    return db('chatLog')
+    return db('public.chatLog')
         .where('role', role);
 }
 
 
 const addChat = (chat) => {
-    db('chatLog')
+    db('public.chatLog')
         .insert(chat)
         .then(([id]) => getLogById(id));
 }
 
 const remove = (option) => {
     if(option === 'all') {
-        return db('chatLog')
+        return db('public.chatLog')
             .del()
             .then(rows => rows);
     } else {
-        return db('chatLog')
+        return db('public.chatLog')
             .where('id', option)
             .del()
             .then(rows => rows);

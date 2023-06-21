@@ -1,5 +1,5 @@
 // Update with your config settings.
-require('dotenv').config();
+require('dotenv').config({ path: '.env' });
 /**
  * @type { Object.<string, import("knex").Knex.Config> }
  */
@@ -40,11 +40,11 @@ module.exports = {
   },
 
   production: {
-    client: 'sqlite3',
+    client: 'pg',
     connection: {
-      filename: './data/chatLog.db3',
-      user:     process.env.USERNAME,
-      password: process.env.PASSWORD
+      database: 'chatLog',
+      user:     process.env.USER,
+      password: process.env.PASSW
     },
     pool: {
       min: 2,
@@ -55,8 +55,7 @@ module.exports = {
     },
     seeds: {
       directory: './data/seeds'
-    },
-    useNullAsDefault: true
+    }
   }
 
 };

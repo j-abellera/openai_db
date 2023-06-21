@@ -21,10 +21,12 @@ const checkLogId = async (req, res, next) => {
 const checkPayload = (req, res, next) => {
     try {
         const { role, content } = req.body;
-        if(!role || !content)
+        if(!role || !content) {
             throw new Error('role and content are required');
-        req.chat = req.body;
-        next();
+        } else {
+            req.chat = req.body;
+            next();
+        }
     } catch(err) {
         err.status = 400;
         next(err);

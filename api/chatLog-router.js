@@ -6,9 +6,11 @@ const { checkLogId, checkPayload } = require('./chatLog-middleware');
 router.get('/:id?', checkLogId, async (req, res, next) => {
     try {
         if(!req.params.id) {
+            console.log('id not founds')
             const chatLog = await Logs.getChatLog();
             res.status(200).json({ message: 'chatLog successfully fetched', data: chatLog });
         } else {
+            console.log('id found')
             res.status(200).json({ message: 'Log successfully fetched', data: req.log });
         }
     } catch(err) {

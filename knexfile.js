@@ -1,5 +1,5 @@
 // Update with your config settings.
-
+require('dotenv').config();
 /**
  * @type { Object.<string, import("knex").Knex.Config> }
  */
@@ -43,8 +43,8 @@ module.exports = {
     client: 'sqlite3',
     connection: {
       filename: './data/chatLog.db3',
-      user:     'username',
-      password: 'password'
+      user:     process.env.USERNAME,
+      password: process.env.PASSWORD
     },
     pool: {
       min: 2,

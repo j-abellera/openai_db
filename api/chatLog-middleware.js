@@ -16,4 +16,17 @@ const checkLogId = async (req, res, next) => {
     }
 }
 
-module.exports = { checkLogId };
+const checkPayload = (req, res, next) => {
+    try {
+        const { role, content } = req.body;
+        if(!role || !content)
+            throw new Error('role and content are required');
+        req.chat = req.body;
+        next();
+    } catch(err) {
+        err.status = 400;
+        next(err);
+    }
+}
+
+module.exports = { checkLogId, checkPayload };

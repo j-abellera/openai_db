@@ -1,18 +1,25 @@
 const express = require('express');
 const Logs = require('./chatLog-model');
 const router = express.Router();
-const { checkLogId } = require('./chatLog-middleware');
+const { checkLogId, checkPayload } = require('./chatLog-middleware');
 
 router.get('/:id?', checkLogId, async (req, res, next) => {
     try {
         const chatLog = await Logs.getChatLog();
-        res.status(200).json(chatLog);
+        res.status(200).json({ message: 'chatLog successfully fetched', data: chatLog });
     } catch(err) {
         next(err);
     }
 });
 
-
+router.post('/', checkPayload, async (req, res, next) => {
+    try {
+        const newLog = await Logs.addChat(req.chat);
+        res.status(201).json({ message: 'Log successfully added', data: newLog });
+    } catch(err) {
+        next(err);
+    }
+})
 
 router.use((err, req, res, next) => {
     if(err) {

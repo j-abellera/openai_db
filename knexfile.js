@@ -42,7 +42,7 @@ module.exports = {
   production: {
     client: 'pg',
     connection: {
-      database: 'chatLog',
+      database: 'openaiproject',
       host:     process.env.REMOTEHOST,
       user:     process.env.REMOTEUSER,
       password: process.env.REMOTEPASS

@@ -19,7 +19,7 @@ const getLogs = (role) => {
 const addChat = (chat) => {
     return db('public.chatLog')
         .insert(chat)
-        .then(([id]) => getLogById(id));
+        .then(() => getChatLog());
 }
 
 const remove = (option) => {

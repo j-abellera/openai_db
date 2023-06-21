@@ -7,7 +7,7 @@ const checkLogId = async (req, res, next) => {
             next();
         const log = await Logs.getLogById(id);
         if(!log)
-            throw new Error('No Log by ID', id);
+            throw new Error(`No Log by ID ${id}`);
         req.log = log;
         next();
     } catch(err) {

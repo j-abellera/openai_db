@@ -13,6 +13,10 @@ exports.seed = async function(knex) {
     {
         "role": "user",
         "content": "What is the deepest part of the ocean?"
+    },
+    {
+        "role": "user",
+        "content": "What is the tallest mountain?"
     }
 ]);
 };

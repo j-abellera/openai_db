@@ -42,10 +42,11 @@ module.exports = {
   production: {
     client: 'pg',
     connection: {
-      database: 'openaiproject',
-      host:     process.env.REMOTEHOST,
-      user:     process.env.REMOTEUSER,
-      password: process.env.REMOTEPASS
+      database: process.env.POSTGRES_DATABASE,
+      host:     process.env.POSTGRES_HOST,
+      user:     process.env.POSTGRES_USER,
+      password: process.env.POSTGRES_PASSWORD,
+      ssl: true
     },
     pool: {
       min: 2,

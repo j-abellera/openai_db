@@ -17,7 +17,7 @@ const getLogs = (role) => {
 
 
 const addChat = (chat) => {
-    db('public.chatLog')
+    return db('public.chatLog')
         .insert(chat)
         .then(([id]) => getLogById(id));
 }

@@ -5,8 +5,12 @@ const { checkLogId, checkPayload } = require('./chatLog-middleware');
 
 router.get('/:id?', checkLogId, async (req, res, next) => {
     try {
-        const chatLog = await Logs.getChatLog();
-        res.status(200).json({ message: 'chatLog successfully fetched', data: chatLog });
+        if(!req.params.id) {
+            const chatLog = await Logs.getChatLog();
+            res.status(200).json({ message: 'chatLog successfully fetched', data: chatLog });
+        } else {
+            res.status(200).json({ message: 'Log successfully fetched', data: req.log });
+        }
     } catch(err) {
         next(err);
     }
@@ -19,7 +23,22 @@ router.post('/', checkPayload, async (req, res, next) => {
     } catch(err) {
         next(err);
     }
-})
+});
+
+router.delete('/delete/:option', checkLogId, async (req, res, next) => {
+    try {
+        Logs.remove(req.params.option)
+            .then(rowsDeleted => {
+                res.status(200).json({
+                    message: req.params.option !== 'all'
+                        ? `Log with ID ${req.params.option} removed successfully`
+                        : `All ${rowsDeleted} logs have removed successfully`
+                });
+            });
+    } catch (err) {
+        next(err);
+    }
+});
 
 router.use((err, req, res, next) => {
     if(err) {

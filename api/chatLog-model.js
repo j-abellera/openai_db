@@ -22,4 +22,17 @@ const addChat = (chat) => {
         .then(([id]) => getLogById(id));
 }
 
-module.exports = { getChatLog, addChat, getLogById, getLogs };
+const remove = (option) => {
+    if(option === 'all') {
+        return db('chatLog')
+            .del()
+            .then(rows => rows);
+    } else {
+        return db('chatLog')
+            .where('id', option)
+            .del()
+            .then(rows => rows);
+    }
+}
+
+module.exports = { getChatLog, addChat, getLogById, getLogs, remove };

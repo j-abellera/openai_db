@@ -9,14 +9,6 @@ exports.seed = async function(knex) {
     {
         "role": "system",
         "content": "You are a helpful assistant"
-    },
-    {
-        "role": "user",
-        "content": "What is the deepest part of the ocean?"
-    },
-    {
-        "role": "user",
-        "content": "What is the tallest mountain?"
     }
 ]);
 };

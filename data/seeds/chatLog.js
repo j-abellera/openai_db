@@ -8,7 +8,7 @@ exports.seed = async function(knex) {
   await knex('chatLog').insert([
     {
         "role": "system",
-        "content": "You are a helpful assistant, your answers should not be too long unless it is necessary to provide more information."
+        "content": "You are a helpful assistant, your answers should not be too long unless it is necessary to provide more information for the question."
     }
 ]);
 };
